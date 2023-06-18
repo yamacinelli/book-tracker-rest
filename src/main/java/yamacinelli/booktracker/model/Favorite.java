@@ -3,18 +3,19 @@ package yamacinelli.booktracker.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
-public class User {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String email;
+    @OneToOne
+    private User user;
 
-    private String password;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private People people;
+    @ManyToMany
+    private List<Book> book;
 }

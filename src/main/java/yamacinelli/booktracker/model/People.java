@@ -5,16 +5,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User {
+public class People {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String email;
+    @Column(nullable = false)
+    private String name;
 
-    private String password;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private People people;
+    @Column(nullable = false)
+    private String lastName;
 }
