@@ -54,4 +54,10 @@ public class UserService implements GenericService<UserDto> {
                 userRepository.saveAndFlush(ParseUtils.parse(dto, User.class)),
                 UserDto.class);
     }
+
+    public UserDto findByCredentials(UserDto dto) {
+        return ParseUtils.parse(
+                userRepository.findUserByEmailAndPassword(dto.getEmail(), dto.getPassword()),
+                UserDto.class);
+    }
 }

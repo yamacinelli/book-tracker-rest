@@ -2,6 +2,7 @@ package yamacinelli.booktracker.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,11 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto dto) {
-        return ResponseEntity.ok(userService.save(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(dto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> findByCredentials(@RequestBody UserDto dto) {
+        return ResponseEntity.ok(userService.findByCredentials(dto));
     }
 }
-    

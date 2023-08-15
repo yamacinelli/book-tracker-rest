@@ -6,4 +6,6 @@ import yamacinelli.booktracker.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findUserByEmailAndPassword(String email, String password);
 }
